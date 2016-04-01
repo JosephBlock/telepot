@@ -166,7 +166,7 @@ class Bot(_BotBase):
         if data['ok']:
             return data['result']
         else:
-            raise TelegramError(data['description'], data['error_code'])
+            raise TelegramError(data['description'], data['error_code'], data['parameters'])
 
     def getMe(self):
         r = requests.post(self._methodurl('getMe'), timeout=self._http_timeout)

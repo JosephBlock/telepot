@@ -1,6 +1,7 @@
 class TelepotException(Exception):
     pass
 
+
 class BadFlavor(TelepotException):
     def __init__(self, offender):
         super(BadFlavor, self).__init__(offender)
@@ -8,6 +9,7 @@ class BadFlavor(TelepotException):
     @property
     def offender(self):
         return self.args[0]
+
 
 class BadHTTPResponse(TelepotException):
     def __init__(self, status, text):
@@ -21,9 +23,10 @@ class BadHTTPResponse(TelepotException):
     def text(self):
         return self.args[1]
 
+
 class TelegramError(TelepotException):
-    def __init__(self, description, error_code):
-        super(TelegramError, self).__init__(description, error_code)
+    def __init__(self, description, error_code, parameters):
+        super(TelegramError, self).__init__(description, error_code, parameters)
 
     @property
     def description(self):
@@ -33,8 +36,14 @@ class TelegramError(TelepotException):
     def error_code(self):
         return self.args[1]
 
+    @property
+    def parameters(self):
+        return self.args[2]
+
+
 class WaitTooLong(TelepotException):
     pass
+
 
 class StopListening(TelepotException):
     def __init__(self, code=None, reason=None):
