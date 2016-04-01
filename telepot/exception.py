@@ -25,7 +25,7 @@ class BadHTTPResponse(TelepotException):
 
 
 class TelegramError(TelepotException):
-    def __init__(self, description, error_code, parameters):
+    def __init__(self, description, error_code, parameters=None):
         super(TelegramError, self).__init__(description, error_code, parameters)
 
     @property
