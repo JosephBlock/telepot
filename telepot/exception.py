@@ -25,8 +25,8 @@ class BadHTTPResponse(TelepotException):
 
 
 class TelegramError(TelepotException):
-    def __init__(self, description, error_code, raw_response=None, parameters=None):
-        super(TelegramError, self).__init__(description, error_code, raw_response, parameters)
+    def __init__(self, description, error_code, parameters=None):
+        super(TelegramError, self).__init__(description, error_code, parameters)
 
     @property
     def description(self):
@@ -37,12 +37,8 @@ class TelegramError(TelepotException):
         return self.args[1]
 
     @property
-    def raw_response(self):
-        return self.args[2]
-
-    @property
     def parameters(self):
-        return self.args[3]
+        return self.args[2]
 
 
 class WaitTooLong(TelepotException):
