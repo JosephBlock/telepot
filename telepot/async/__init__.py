@@ -45,7 +45,12 @@ class Bot(telepot._BotBase):
         if data['ok']:
             return data['result']
         else:
-            raise TelegramError(data['description'], data['error_code'], data['parameters'])
+            if 'parameters' in data:
+                parameters = data['parameters']
+            else:
+                parameters = None
+
+            raise TelegramError(data['description'], data['error_code'], parameters)
 
     @asyncio.coroutine
     def getMe(self):
